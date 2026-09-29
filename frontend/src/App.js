@@ -21,7 +21,7 @@ import {
   Mail,
   X
 } from 'lucide-react';
-
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
 function App() {
   const [activeTab, setActiveTab] = useState('match'); // 'match' or 'audit'
   const [file, setFile] = useState(null);
@@ -53,7 +53,7 @@ function App() {
 
     try {
       if (authMode === 'register') {
-        await axios.post('http://localhost:8080/api/auth/register', {
+        await axios.post(`${API_BASE_URL}/api/auth/register`, {
           name: authForm.name,
           email: authForm.email,
           password: authForm.password
@@ -61,7 +61,7 @@ function App() {
         setAuthSuccess("Account created successfully! Please sign in.");
         setAuthMode('login');
       } else {
-        const res = await axios.post('http://localhost:8080/api/auth/login', {
+        const res = await axios.post(`${API_BASE_URL}/api/auth/login`, {
           email: authForm.email,
           password: authForm.password
         });
@@ -116,8 +116,8 @@ function App() {
 
     try {
       const endpoint = activeTab === 'match' 
-        ? 'http://localhost:8080/api/resume/match-job'
-        : 'http://localhost:8080/api/resume/analyze';
+        ? `${API_BASE_URL}/api/resume/match-job`
+        : `${API_BASE_URL}/api/resume/analyze`;
 
       if (activeTab === 'match') {
         formData.append('jobDescription', jobDescription);
