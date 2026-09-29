@@ -1,0 +1,15 @@
+# Backend ignore
+demo/target/
+demo/.mvn/
+demo/*.log
+
+# Frontend ignore
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+
+# IDE / System ignore
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
